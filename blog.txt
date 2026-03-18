@@ -1,0 +1,217 @@
+001 - 2026-03-17
+
+【项目名称】萨米特核心素养数据库与全栈项目搭建
+
+【工作内容】
+
+一、阅读并分析萨米特核心素养.xlsx
+- 文件路径：E:\shimo\萨米特\萨米特核心素养.xlsx
+- 共4个工作表：中文版、Sheet2、萨米特公立学校-项目品控量规、公开PBL汇总
+- 中文版包含7个能力领域、36个能力维度，每个维度有水平0～8共9级描述
+- Sheet2收录生物降解PBL项目案例（中英双语）
+- 项目品控量规改编自SCALE和BIE，含不合格/合格/典范三档评级
+- 公开PBL汇总整理了萨米特36个公开项目案例
+
+二、搭建前端项目（Vue 3）
+- 路径：E:\shimo\frontend\
+- 使用 npm create vue@latest 创建项目
+- 已安装全部依赖（116个包）
+- 启动命令：cd frontend && npm run dev（默认 http://localhost:5173）
+
+三、搭建后端项目（Express）
+- 路径：E:\shimo\backend\
+- 安装依赖：express、mysql2、cors、dotenv
+- 文件结构：
+  - index.js：入口文件，启动服务并测试数据库连接
+  - db.js：MySQL 连接池
+  - .env：环境变量（DB_HOST/DB_USER/DB_PASSWORD/DB_NAME/PORT）
+- 启动命令：cd backend && node index.js（运行在 http://localhost:3000）
+
+四、建立 MySQL 数据库 Summit
+- 数据库名：Summit
+- 字符集：utf8mb4
+- 用户名：root / 密码：750301
+
+五、建立数据表（能力领域与维度）
+
+表1：capability_domain（能力领域 - 一级目录）
+  - id INT 主键
+  - name VARCHAR(50) 领域名称
+  - sort_order INT 排序
+  - created_at TIMESTAMP
+
+表2：capability_dimension（能力维度 - 二级目录）
+  - id INT 主键
+  - domain_id INT 外键→capability_domain
+  - name VARCHAR(100) 维度名称
+  - description TEXT 高阶思维能力描述
+  - sort_order INT 排序
+  - created_at TIMESTAMP
+
+录入数据：
+  1. 文本分析（精读）→ 主题与中心思想、观点与目的、发展、结构、用词选择（5个）
+  2. 使用资料         → 选择相关原始资料、情境化原始资料、综合多种原始资料（3个）
+  3. 探究             → 提出问题、定义设计问题、预测与假设、策划及进行调研（4个）
+  4. 分析与综合       → 组织与表达信息、识别规律和关系、比较与对比、建模、
+                         阐释数据资料以提出有效论点、建立联系和推断、
+                         评估竞争性的设计方案、评价论证、设计解决方案、
+                         建立有证据的解释（10个）
+  5. 创作/写作        → 立论、资料性与解释性论文、叙事、反论、证据选择、
+                         证据解释、证据整合、组织结构、开头和结尾（9个）
+  6. 听/说            → 为以证据为基础的讨论做贡献、规则与积极倾听（2个）
+  7. 产出/演讲        → 口头表达、多媒体交流、精准沟通（3个）
+
+  合计：7个能力领域，36个能力维度，数据全部录入完成。
+
+--------------------------------------------------------------------------------
+
+002 - 2026-03-17
+
+【项目名称】数据表扩展与 Vue 3 前端界面搭建
+
+【工作内容】
+
+一、建立水平描述数据表（capability_level）
+- 表结构：
+  - id INT 主键
+  - dimension_id INT 外键→capability_dimension
+  - level TINYINT 水平等级（0～8）
+  - description TEXT 该水平的详细描述
+  - UNIQUE KEY (dimension_id, level)
+- 从萨米特核心素养.xlsx 中文版提取全部水平描述
+- 录入数据：36个维度 × 9个水平 = 324条记录
+
+二、建立参考课标数据表（dimension_curriculum）
+- 表结构：
+  - id INT 主键
+  - dimension_id INT 外键→capability_dimension（唯一）
+  - language TINYINT(1) 适用语言课标
+  - social   TINYINT(1) 适用社会课标
+  - science  TINYINT(1) 适用科学课标
+- 录入数据：36条，覆盖全部维度
+
+三、数据库完整结构（4张表）
+  capability_domain（7条）
+      └── capability_dimension（36条）
+              ├── capability_level（324条）  ← 水平0~8描述
+              └── dimension_curriculum（36条） ← 参考课标对应
+
+四、Vue 3 前端界面方案设计（3个方案）
+- 方案A：左侧树形导航 + 右侧水平卡片（白色清爽风）
+- 方案B：完整表格视图还原 Excel 结构 + 单元格点击弹窗
+- 方案C：领域Tab + 卡片网格 + 暗黑科技风
+
+五、实施方案A，完整搭建前端菜单与页面
+
+1. 安装依赖：vue-router@4、axios
+
+2. 后端新增 API 路由
+   - GET /api/domains/full    → 完整嵌套数据（领域→维度→课标+水平）
+   - GET /api/domains         → 领域列表
+   - GET /api/dimensions/:id  → 单维度详情
+   - GET /api/dimensions/stats/summary → 统计数据
+   - 路由文件：backend/routes/domains.js、backend/routes/dimensions.js
+
+3. 前端目录结构
+   frontend/src/
+   ├── api/index.js           ← axios 接口封装
+   ├── router/index.js        ← Vue Router 路由配置
+   ├── layout/MainLayout.vue  ← 左侧菜单 + 顶部导航栏
+   └── pages/
+       ├── HomePage.vue       ← 首页（统计卡片 + 领域概览）
+       ├── FrameworkPage.vue  ← 核心素养框架（方案A主页面）
+       ├── CurriculumPage.vue ← 参考课标（课标筛选表格）
+       └── DimensionPage.vue  ← 维度详情（水平步进器）
+
+4. 菜单与路由对应
+   - ⊞ 首页       → /             统计数据 + 7个领域快速入口
+   - ◈ 核心素养框架 → /framework   左树形导航 + 右侧水平卡片
+   - ◉ 参考课标    → /curriculum   课标筛选表格（含语言/社会/科学）
+   -   维度详情    → /dimension/:id 单维度水平步进器详情页
+
+5. 运行地址
+   - 前端：http://localhost:5173
+   - 后端：http://localhost:3000
+
+--------------------------------------------------------------------------------
+
+003 - 2026-03-17
+
+【项目名称】PBL 项目库前端页面实现
+
+【工作内容】
+
+一、建立 pbl_project 数据表
+- 从萨米特核心素养.xlsx 公开PBL汇总 sheet 提取数据
+- 表结构：id, sort_id, pa_type, is_certified, category, subject,
+           course_name, china_grade, grade_level,
+           grade_6~12（布尔年级字段）,
+           duration, name_en, name_zh, url_original, url_translation, notes
+- 导入数据：36条 PBL 项目记录
+
+二、后端新增 PBL API（routes/pbl.js）
+   - GET /api/pbl              → 全部项目（支持 category/grade/certified 筛选）
+   - GET /api/pbl/:id          → 单个项目详情
+   - GET /api/pbl/stats/overview → 统计：总量/认证/按学科/按学段/按时长
+
+三、前端 api/index.js 新增
+   - getPblProjects(params) → GET /pbl
+   - getPblProject(id)      → GET /pbl/:id
+   - getPblStats()          → GET /pbl/stats/overview
+
+四、PBL 页面设计与实现（方案B 定制版）
+   文件：frontend/src/pages/PblPage.vue
+
+   布局：左侧筛选栏 + 右侧上下分区
+   ┌──────────────┬────────────────────────────────────┐
+   │  筛选面板     │  项目列表表格（上部）               │
+   │              │  列：名称/课程简述/学段/时长/类型/认证│
+   │  · 年级多选  │------------------------------------│
+   │   6~12年级   │  项目详情面板（下部，点击行后展开）  │
+   │  · 学科单选  │  含：元数据网格/适用年级标签/备注/链接│
+   │  · PA类型    │                                    │
+   │  · 重置按钮  │                                    │
+   └──────────────┴────────────────────────────────────┘
+
+   年级过滤：多选（任意一个年级字段 grade_N=1 即命中）
+   学科/PA：单选切换（再点取消）
+   搜索：实时关键词匹配中英文名称
+
+五、路由与菜单更新
+   - 新增路由：/pbl → PblPage（title: 'PBL 项目库'）
+   - 侧边菜单新增：◧ PBL 项目库 → /pbl（badge: 36）
+
+--------------------------------------------------------------------------------
+
+004 - 2026-03-17
+
+【项目名称】PBL 页面交互优化
+
+【工作内容】
+
+一、搜索框新增查询按钮与回车触发
+- 输入框旁增加紫色「查询」按钮
+- 支持按 Enter 键触发查询
+- 引入 appliedKeyword（实际过滤用）与 keyword（输入框绑定）分离，
+  仅在点击/回车时同步，避免实时过滤干扰
+
+二、修复 /api/pbl 接口无响应问题
+- 现象：前端搜索「Literary Analysis Essay」无结果，数据库有对应记录
+- 根因：添加 pbl.js 路由后，后端 Node 进程未重启，运行的是旧版本代码
+- 修复：用 wmic 终止旧进程（PID 33540），重启 backend/index.js，
+        接口恢复正常，返回 36 条记录
+
+三、左侧筛选面板调整
+- 移除 PA 类型筛选区块
+- 年级由多选改为单选（再次点击同一年级取消选中）
+- 选中学科时自动触发查询（toggleCat 内同步 appliedKeyword）
+
+四、项目详情由底部面板改为弹出框
+- 点击项目行弹出居中 Modal（宽 560px，最高 82vh）
+- 点击遮罩区域或右上角 ✕ 关闭
+- 弹出/关闭带淡入淡出 + 轻微缩放动画（modal-fade transition）
+- 表格不再因详情展开而收缩，始终占满右侧区域
+
+五、弹出框新增字段
+- 中文名（name_zh）：显示在元数据网格首位，有值才渲染
+- 原链接（url_original）：独占一整行，显示完整 URL，可点击跳转

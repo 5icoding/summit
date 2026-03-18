@@ -1,0 +1,42 @@
+ROW0||说明：（1）表现性评估（performance assessment）一共有四种类型：1建构反应式、2独立任务、3课程嵌入、4复杂项目，分别对应A栏的PA类型；（2）免费公开资源库（https://performanceassessmentresourcebank.org/大家也可自行注册）一共收录了萨米特的36个项目案例（有一个案例Sustainability重复收录了两次），其中4个并未达到认证标准，在本表中放在最后，没有详细整理，B栏的符号“Y”表示的就是达到认证标准；（3）萨米特案例在收录时，使用的还是2017年版本的认知能力量规，而不是最新的2019年版本的量规。两套量规都放在了AX栏，其中2019年是中英双语对照版本，也是探月日常教学使用的文件链接。||||||||||||||||||||||||||||||||||||||||||||||||
+ROW2||PA
+类型||官方
+认证||大类标签||学科大类||课程名称||中国
+学段||案例年级||||||||||||||||所需时间||||||||||英文名||中文名||原链接||翻译后链接||整理
+编号||探月备注
+ROW4||3||Y||语言||English / Language Arts||||高中||46338||6||7||8||9||10||11||12||4周及以上||||||||||Literary Analysis Essay||||http://performanceassessmentresourcebank.org/node/7961||||1||
+ROW5||3||Y||语言||English / Language Arts||||初中||9||6||7||8||9||10||11||12||2至3周||||||||||Literary Analysis Paragraph||||http://performanceassessmentresourcebank.org/node/8296||||2||
+ROW6||3||Y||语言||English / Language Arts||||高中||2010-11-12 00:00:00||6||7||8||9||10||11||12||2至3周||||||||||Poetry Professor||诗歌解读专家||http://performanceassessmentresourcebank.org/node/8321||https://shimo.im/sheets/47kgJQDDglubR9qV/SexFs||3||阅读与口头表达
+ROW7||3||Y||语言||English / Language Arts||||高中||10||6||7||8||9||10||11||12||2至3周||||||||||Dystopian Narrative||||http://performanceassessmentresourcebank.org/node/11046||||4||
+ROW8||3||Y||语言||English / Language Arts||||初高中||46275||6||7||8||9||10||11||12||2至3周||||||||||Poetry Comparison Essay||诗歌比较论文||http://performanceassessmentresourcebank.org/node/11051||https://shimo.im/sheets/47kgJQDDglubR9qV/voz5d||5||阅读与笔口头表达
+ROW9||4||Y||语言||English / Language Arts||||小学||6||6||7||8||9||10||11||12||2至3周||||||||||Writing My Own Myth||编写我的神话||http://performanceassessmentresourcebank.org/resource/7796||https://shimo.im/sheets/47kgJQDDglubR9qV/OaSKO||6||小学语言推荐
+ROW10||4||Y||语言||English / Language Arts||||初中||9||6||7||8||9||10||11||12||2至3周||||||||||Persuasive Speech||||http://performanceassessmentresourcebank.org/resource/8041||||7||
+ROW11||4||Y||语言||English / Language Arts||||高中||46338||6||7||8||9||10||11||12||4周及以上||||||||||Debate||辩论||http://performanceassessmentresourcebank.org/resource/11061||https://shimo.im/sheets/47kgJQDDglubR9qV/0CBHF||8||辩论设计有多细
+ROW12||4||Y||语言||English / Language Arts||||高中||46338||6||7||8||9||10||11||12||4周及以上||||||||||Mock Trial||||http://performanceassessmentresourcebank.org/resource/11071||||9||
+ROW13||3||Y||社科||History / Social Studies||U.S. Government||高中||12||6||7||8||9||10||11||12||1至2周||||||||||Letter To An Elected Official||||http://performanceassessmentresourcebank.org/node/7816||||10||
+ROW14||3||Y||社科||History / Social Studies||World History||高中||10||6||7||8||9||10||11||12||1周内3至5天||||||||||Globalization Project||全球化项目||http://performanceassessmentresourcebank.org/resource/8076||https://shimo.im/sheets/47kgJQDDglubR9qV/inIP2||11||中学社科必读
+ROW15||3||Y||社科||History / Social Studies||U.S. History||初高中||9/10/11/12||6||7||8||9||10||11||12||1至2周||||||||||American Identity Project||||http://performanceassessmentresourcebank.org/node/11121||||12||
+ROW16||4||Y||社科||History / Social Studies||U.S. Government||高中||46338||6||7||8||9||10||11||12||2至3周||||||||||Shared Powers In Government||||http://performanceassessmentresourcebank.org/resource/8236||||13||
+ROW17||3||Y||科学||Science||Chemistry||高中||11||6||7||8||9||10||11||12||2至3周||||||||||Biodiesel||||http://performanceassessmentresourcebank.org/node/8031||||14||
+ROW18||3||Y||科学||Science||Physics||高中||46306||6||7||8||9||10||11||12||2至3周||||||||||Wave/Sound CER (Claim Evidence Reasoning) Essay||波与声论文||http://performanceassessmentresourcebank.org/resource/8136||https://shimo.im/sheets/47kgJQDDglubR9qV/SEDyG||15||再现科研思路
+ROW19||3||Y||科学||Science||Biology||初高中||46275||6||7||8||9||10||11||12||1周内3至5天||||||||||Current Events In Science||||http://performanceassessmentresourcebank.org/node/8166||||16||
+ROW20||3||Y||科学||Science||Physics||初高中||46275||6||7||8||9||10||11||12||2至3周||||||||||Electric House||||http://performanceassessmentresourcebank.org/node/8326||||17||
+ROW21||3||Y||科学||Science||Physics||高中||46338||6||7||8||9||10||11||12||1周内3至5天||||||||||Energy Models||||http://performanceassessmentresourcebank.org/node/8346||||18||
+ROW22||3||Y||科学||Science||Environmental Science||高中||46338||6||7||8||9||10||11||12||1至2周||||||||||Sustainability（重复收录）||||http://performanceassessmentresourcebank.org/node/10971||||19||
+ROW23||3||Y||科学||Science||Earth Science||初中||7||6||7||8||9||10||11||12||1至2周||||||||||Geology Comic Book||||https://performanceassessmentresourcebank.org/resource/11751||||20||
+ROW24||3||Y||科学||Science||Environmental Science||高中||46338||6||7||8||9||10||11||12||1至2周||||||||||Sustainability（重复收录）||||https://performanceassessmentresourcebank.org/resource/11996||||21||
+ROW25||3||Y||科学||Science||Environmental Science||高中||2010-11-12 00:00:00||6||7||8||9||10||11||12||4周及以上||||||||||Personal Impact Project||个人影响项目||https://performanceassessmentresourcebank.org/resource/12016||https://shimo.im/sheets/47kgJQDDglubR9qV/fO7XV||22||个性化研究
+ROW26||4||Y||科学||Science||||初高中||9/10/11/12||6||7||8||9||10||11||12||2至3周||||||||||Ecocolumn||||http://performanceassessmentresourcebank.org/resource/8351||||23||
+ROW27||4||Y||科学||Science||Biology||初高中||2009-10-11 00:00:00||6||7||8||9||10||11||12||4周及以上||||||||||Bioremediation||生物降解项目||http://performanceassessmentresourcebank.org/resource/11056||https://shimo.im/sheets/47kgJQDDglubR9qV/xBl6b||24||实验流程和报告分析
+ROW28||3||Y||数学||Mathematics||Statistics||高中||2010-11-12 00:00:00||6||7||8||9||10||11||12||2至3周||||||||||Casino Night||||http://performanceassessmentresourcebank.org/node/7851||||25||
+ROW29||3||Y||数学||Mathematics||Pre-Calculus||初高中||9/10/11/12||6||7||8||9||10||11||12||2至3周||||||||||Cube It - Patterns, Polynomials, And Modeling||||http://performanceassessmentresourcebank.org/node/8106||||26||
+ROW30||3||Y||数学||Mathematics||Algebra 2||初高中||9/10/11/12||6||7||8||9||10||11||12||1周内3至5天||||||||||Cooling Project||||http://performanceassessmentresourcebank.org/node/8156||||27||
+ROW31||3||Y||数学||Mathematics||||初中||7||6||7||8||9||10||11||12||2至3周||||||||||Creating The Ultimate Health Smoothie||||http://performanceassessmentresourcebank.org/node/11076||||28||
+ROW32||3||Y||数学||Mathematics||Calculus||高中||46338||6||7||8||9||10||11||12||1至2周||||||||||Book Of Limits||||https://performanceassessmentresourcebank.org/resource/11951||||29||
+ROW33||4||Y||数学||Mathematics||Statistics||高中||46338||6||7||8||9||10||11||12||2至3周||||||||||Data Collection||||http://performanceassessmentresourcebank.org/resource/7781||||30||
+ROW34||4||Y||数学||Mathematics||Pre-Calculus||高中||2010-11-12 00:00:00||6||7||8||9||10||11||12||2至3周||||||||||Modeling Periodic Functions||周期性函数建模||http://performanceassessmentresourcebank.org/resource/8261||https://shimo.im/sheets/47kgJQDDglubR9qV/r6GLL||31||中学数学必读
+ROW35||4||Y||数学||Mathematics||Calculus||高中||46338||6||7||8||9||10||11||12||2至3周||||||||||Optimization Project||||http://performanceassessmentresourcebank.org/resource/8306||||32||
+ROW36||2||||社科||History / Social Studies||||高中||11||||||||||||||||||||||||||American Revolution FRQ||||https://performanceassessmentresourcebank.org/resource/10661||||||
+ROW37||3||||语言||English / Language Arts||||小学||6||||||||||||||||||||||||||Explaining The World With Myths||||https://performanceassessmentresourcebank.org/resource/10631||||||
+ROW38||3||||数学||Mathematics||Statistics||高中||46338||||||||||||||||||||||||||Regression Project||||https://performanceassessmentresourcebank.org/resource/10641||||||
+ROW39||4||||数学||Mathematics||||初中||9||||||||||||||||||||||||||Infographic||||https://performanceassessmentresourcebank.org/resource/10656||||||
