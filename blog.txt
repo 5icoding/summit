@@ -215,3 +215,88 @@
 五、弹出框新增字段
 - 中文名（name_zh）：显示在元数据网格首位，有值才渲染
 - 原链接（url_original）：独占一整行，显示完整 URL，可点击跳转
+
+--------------------------------------------------------------------------------
+
+005 - 2026-03-18
+
+【项目名称】pbl_project_instructions 表结构重构（树形化）
+
+【工作内容】
+
+一、原表结构
+- 表 pbl_project_instructions 原字段：id, first_level, sub_number, sub_name
+- 共28条扁平记录，一级目录用 first_level 字段重复存储
+
+二、新表结构（树形）
+- 字段：id, parent_id, title, number
+  - parent_id：NULL 表示一级节点，非 NULL 指向父节点 id
+  - title：节点名称/标题（原 first_level 或 sub_name）
+  - number：编号（原 sub_number，如 A/B/C 或 Item A 等）
+- 自引用外键：fk_instruction_parent → pbl_project_instructions(id)，CASCADE
+
+三、数据迁移
+- 新增5个一级父节点（id 1-5）：
+  1. 基本信息
+  2. 学生任务书 STUDENT INSTRUCTIONS
+  3. 教师说明书 TEACHER'S GUIDE
+  4. 评分量规 SCORING GUIDES/RUBRICS
+  5. 附件
+- 原28条记录作为子节点插入（id 6-33），parent_id 指向对应父节点
+
+四、pbl_project_sample 关联更新
+- instruction_id 从原 1-28 映射更新为新的子节点 id 6-33
+- 采用降序逐条更新避免 id 重叠冲突（28→33, 27→32, ..., 1→6）
+
+五、同步更新 sql/pbl_project_instructions.sql 文件
+- 建表语句、INSERT 数据、pbl_project_sample INSERT 均已同步为新结构
+
+--------------------------------------------------------------------------------
+
+006 - 2026-03-18
+
+【项目名称】PBL 项目详情页开发与数据接口完善
+
+【工作内容】
+
+一、PBL 弹出框新增「查看详情」按钮
+- PblPage.vue 弹出框底部链接栏新增黑色「查看详情 →」按钮
+- 点击跳转至 /pbl/:id/detail 路由
+
+二、新建 PblDetailPage.vue 项目详情页
+- 左侧固定目录：5个章节锚点（基本信息/学生任务书/教师说明书/评分量规/附件）
+- 顶部项目元数据卡片：名称/学科/学段/时长/认证标签
+- 右侧内容区：按章节展示指导结构与案例内容
+
+三、后端新增接口并修复路由顺序 bug
+- 新增 GET /api/pbl/instructions：JOIN 查询 pbl_project_instructions + pbl_project_sample，返回树形结构
+- 修复 /stats/overview 定义在 /:id 之后导致被 id 路由拦截（永远 404）的 bug
+- 路由顺序调整为：/ → /stats/overview → /instructions → /:id
+- 前端 api/index.js 新增 getPblInstructions()
+
+四、目录切换交互
+- 左侧目录点击切换 activeSecId，右侧只渲染当前选中章节
+- 数据加载后默认选中第一节（基本信息）
+- watch(activeSecId) 切换章节时自动重置折叠状态
+
+五、折叠面板（Accordion）
+- 每个条目标题行可点击展开/收起，箭头旋转指示状态
+- 标题栏右侧「展开全部 ▼ / 收起全部 ▲」一键控制
+- 切换章节时所有条目重置为收起状态
+- 展开/收起带 slide 过渡动画
+
+六、标题行布局调整
+- 项目名称与 学段/时长/学科 标签同行显示（flex 横向排列）
+- 英文名独立一行显示在下方
+
+七、新增 en_title 字段（中英文拆分）
+- ALTER TABLE pbl_project_instructions ADD COLUMN en_title VARCHAR(500)
+- 用 REGEXP_SUBSTR 提取英文到 en_title，用 LOCATE 截取中文修复 title
+- 最终结果：title 只保留中文，en_title 存储英文（无英文的行为 NULL）
+- 同步更新 sql/pbl_project_instructions.sql 及后端 SELECT 字段
+
+八、修复教师说明书 J 评分点击无响应 bug
+- 根因：detail-main 是 flex 列容器，子元素默认 flex-shrink: 1，内容超高时
+        被压缩填入而非触发 overflow-y: auto 滚动，J 评分被挤压不可见
+- 修复：proj-header 和 sec-block 加 flex-shrink: 0，禁止压缩，
+        超出高度后 detail-main 正常滚动，所有条目均可点击展开

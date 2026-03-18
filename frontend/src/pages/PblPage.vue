@@ -183,6 +183,10 @@
             <a v-if="selectedProject.url_translation"
                :href="selectedProject.url_translation"
                target="_blank" class="dp-link trans">查看译文 ↗</a>
+            <button
+              class="dp-link detail"
+              @click="router.push(`/pbl/${selectedProject.id}/detail`)"
+            >查看详情 →</button>
           </div>
         </div>
       </div>
@@ -192,7 +196,10 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { getPblProjects } from '../api/index.js'
+
+const router = useRouter()
 
 const projects        = ref([])
 const selectedGrade   = ref(null)   // 单选年级
@@ -446,8 +453,9 @@ onMounted(async () => {
 
 .dp-links  { display: flex; gap: 10px; }
 .dp-link   { padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; }
-.dp-link.orig  { background: #6366f1; color: #fff; }
-.dp-link.trans { background: #22c55e; color: #fff; }
+.dp-link.orig   { background: #6366f1; color: #fff; }
+.dp-link.trans  { background: #22c55e; color: #fff; }
+.dp-link.detail { background: #0f172a; color: #fff; border: none; cursor: pointer; font-family: inherit; }
 
 /* 弹窗动画 */
 .modal-fade-enter-active, .modal-fade-leave-active { transition: opacity .2s ease; }
