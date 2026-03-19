@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon -x npm run serve",
+    "serve": "node index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +18,8 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "mysql2": "^3.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }

@@ -300,3 +300,179 @@
         被压缩填入而非触发 overflow-y: auto 滚动，J 评分被挤压不可见
 - 修复：proj-header 和 sec-block 加 flex-shrink: 0，禁止压缩，
         超出高度后 detail-main 正常滚动，所有条目均可点击展开
+
+--------------------------------------------------------------------------------
+
+007 - 2026-03-19
+
+【项目名称】backend 添加 nodemon 热重载
+
+【工作内容】
+
+一、安装 nodemon
+- 以开发依赖安装：npm install --save-dev nodemon
+- 版本：nodemon ^3.1.14
+
+二、新增 nodemon.json 配置文件（backend/nodemon.json）
+- watch：监听 *.js 和 *.json 文件变化
+- env：自动设置 NODE_ENV=development
+- ignore：排除 package.json、nodemon.json、node_modules、.git，避免无效重启
+
+三、package.json scripts 调整
+- dev：npx nodemon -x npm run serve（热重载启动，文件变更自动重启）
+- serve：node index.js（实际执行入口）
+- start：node index.js（生产环境普通启动）
+
+四、参考资料
+- 阿里云开发者文档：https://developer.aliyun.com/article/1138635
+
+--------------------------------------------------------------------------------
+
+008 - 2026-03-19
+
+【项目名称】配置 Playwright MCP 服务器
+
+【工作内容】
+
+一、尝试通过 claude mcp add 命令添加
+- 命令：claude mcp add playwright npx '@playwright/mcp@latest'
+- 结果：失败，原因是 Windows 环境下需要 git-bash，当前 PATH 中未找到
+
+二、手动配置 Playwright MCP 服务器
+- 编辑文件：C:\Users\ASUS\.claude.json
+- 在顶层新增 mcpServers 字段：
+  {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "type": "stdio"
+    }
+  }
+- 重启 Claude Code 后生效
+
+三、备注
+- 目标：使用 Playwright MCP 访问 https://performanceassessmentresourcebank.org/resource/11056
+- 用户名：5icoding@sina，密码由用户自行输入
+- Claude in Chrome 扩展当前未连接，故改用 Playwright MCP 方案
+
+--------------------------------------------------------------------------------
+
+009 - 2026-03-19
+
+【项目名称】PARB 资源页面采集与 MySQL 数据入库
+
+【工作内容】
+
+一、使用 Playwright MCP 访问并保存资源页面
+- 目标页面：https://performanceassessmentresourcebank.org/resource/11056
+- 已登录账号（jun），页面标题：Bioremediation（生物修复）
+- 使用 page.content() 获取完整 HTML，通过 Node.js 写入本地文件
+- 保存路径：E:\shimo\pages\11056.html（约 56KB）
+
+二、提取页面结构化数据（保存至 pages/11056.txt）
+
+1. 基本信息
+   - Type of Task:         Complex Project（复杂项目）
+   - Subject（学科）:      Science（科学）
+   - Course（课程）:       Biology（生物学）
+   - Grade Level（年级）:  9、10、11 年级
+   - Grade Level Span:     High (9-12)（高中 9-12 年级）
+   - Duration（时长）:     4 or more weeks（4 周或以上）
+   - Student Collaboration: Substantial（大量协作）
+   - Source（来源）:       Summit Public Schools
+   - Rating（评分）:       暂无评分
+
+2. 简介（Rate 与 Download Resource 之间）
+   - 学生设计实验，利用 Fast Plants 测试去除铜、锌毒素效果
+   - 共3部分：苏格拉底研讨会 / 多周实验设计与实施 / 实验报告撰写
+
+3. Download Resource（10个文件）
+   - Teacher Directions、Student Instructions、Item A-H（共10个 .docx 文件）
+
+4. Scoring Guides/Rubrics（1个文件）
+   - Summit Public Schools Bioremediation Rubric（.pdf）
+
+5. Other Tasks With The Same Standards（7个标准）
+   - CCSS.ELA-LITERACY.RST.11-12.9 / SL.9-10.1.A / WHST.11-12.1.A
+   - WHST.11-12.1.E / WHST.11-12.5 / WHST.11-12.7 / NGSS.HS-LS2-7
+
+三、设计数据表结构（4张表，前缀 pbl_project_summit_）
+
+表1：pbl_project_summit_resources（资源主表）
+   - 字段：id, title, url, task_type, subject, course, grade_level,
+           grade_level_span, duration, student_collaboration,
+           source, rating, description
+
+表2：pbl_project_summit_files（下载文件表）
+   - 字段：id, resource_id, file_type(download/rubric), title, url, sort_order
+   - 理由：一资源对应多文件，download 与 rubric 用 file_type 字段区分
+
+表3：pbl_project_summit_standards（标准表）
+   - 字段：id, code, url
+   - 理由：标准可被多个资源共用，独立建表避免冗余
+
+表4：pbl_project_summit_resource_standards（资源-标准关联表）
+   - 字段：resource_id, standard_id（联合主键）
+   - 理由：资源与标准为多对多关系，需中间表解耦
+
+四、建表并写入 MySQL 数据库
+   - 数据库：summit / 用户：root / 密码：750301
+   - 执行脚本：E:\shimo\pages\init_db.sql
+   - 写入结果：
+     · pbl_project_summit_resources      → 1 条
+     · pbl_project_summit_files          → 11 条（10个下载文件 + 1个评分指南）
+     · pbl_project_summit_standards      → 7 条
+     · pbl_project_summit_resource_standards → 7 条
+
+--------------------------------------------------------------------------------
+
+010 - 2026-03-19
+
+【项目名称】PARB 资源文件下载与中文翻译
+
+【工作内容】
+
+一、下载资源文件至本地（pages/11056/）
+- 测试文件是否需要登录：HTTP 200，无需认证，可直接下载
+- 数据库新增字段：pbl_project_summit_files 表增加 is_downloaded、local_path 两列
+- 使用 Node.js https 模块批量下载（rejectUnauthorized: false 跳过 SSL 验证）
+- 下载脚本：E:\shimo\pages\download_11056.js
+- 下载结果（11个文件全部成功）：
+  01_Teacher_Directions.docx          85 KB
+  02_Student_Instructions.docx        83 KB
+  03_Item_A_Socratic_Seminar.docx     77 KB
+  04_Item_B_Graphic_Organizer.docx    77 KB
+  05_Item_C_Experiment_Brainstorm.docx 200 KB
+  06_Item_D_Research_Hypothesis.docx  189 KB
+  07_Item_E_How_to_Write_Procedure.docx 205 KB
+  08_Item_F_Lab_Report_Analysis.docx  75 KB
+  09_Item_G_Lab_Report_Conclusion.docx 76 KB
+  10_Item_H_Lab_Report_Outline.docx   77 KB
+  11_Bioremediation_Rubric.pdf        74 KB
+- 下载完成后自动更新数据库：is_downloaded=1，local_path=pages/11056/文件名
+
+二、翻译为中文文档（保存至 pages/11056_zh/）
+
+第一轮（文件01-03）：
+- 使用 mammoth 提取 docx 文本，MyMemory 免费 API 翻译
+- 翻译工具：E:\shimo\pages\translate_11056.js
+- 文件04-11 翻译失败，原因：MyMemory 每日限额（500词）耗尽，返回原文
+
+第二轮（文件04-11）：
+- 改用 @vitalets/google-translate-api（Google 翻译非官方接口，无每日限额）
+- PDF 改用 pdf2json 提取文本（pdf-parse 包调用方式不兼容）
+- 翻译脚本：E:\shimo\pages\retranslate_11056.js
+- 翻译结果（8个文件全部成功）：
+  04_项目B_图形组织.txt
+  05_项目C_实验头脑风暴.txt
+  06_项目D_研究假设.txt
+  07_项目E_实验步骤写法.txt
+  08_项目F_报告分析.txt
+  09_项目G_报告结论.txt
+  10_项目H_报告提纲.txt
+  11_生物修复评分量规.txt（由 PDF 提取翻译）
+
+三、最终文件目录
+- 原始英文文件：E:\shimo\pages\11056\（11个）
+- 中文翻译文件：E:\shimo\pages\11056_zh\（11个 .txt）
+

@@ -1,0 +1,12 @@
+USE summit;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/01_Teacher_Directions.docx' WHERE id=1;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/02_Student_Instructions.docx' WHERE id=2;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/03_Item_A_Socratic_Seminar.docx' WHERE id=3;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/04_Item_B_Graphic_Organizer.docx' WHERE id=4;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/05_Item_C_Experiment_Brainstorm.docx' WHERE id=5;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/06_Item_D_Research_Hypothesis.docx' WHERE id=6;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/07_Item_E_How_to_Write_Procedure.docx' WHERE id=7;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/08_Item_F_Lab_Report_Analysis.docx' WHERE id=8;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/09_Item_G_Lab_Report_Conclusion.docx' WHERE id=9;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/10_Item_H_Lab_Report_Outline.docx' WHERE id=10;
+UPDATE pbl_project_summit_files SET is_downloaded=1, local_path='pages/11056/11_Bioremediation_Rubric.pdf' WHERE id=11;

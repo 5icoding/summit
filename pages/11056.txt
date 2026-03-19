@@ -1,0 +1,94 @@
+Bioremediation
+https://performanceassessmentresourcebank.org/resource/11056
+
+================================================================================
+基本信息
+================================================================================
+
+Type of Task:         Complex Project
+Subject（学科）:      Science（科学）
+Course（课程）:       Biology（生物学）
+Grade Level（年级）:  9、10、11 年级
+Grade Level Span:     High (9-12)（高中 9-12 年级）
+Duration（时长）:     4 or more weeks（4 周或以上）
+Student Collaboration（学生协作）: Substantial（大量协作）
+Source（来源）:       Summit Public Schools（Summit 公立学校）
+Rating（评分）:       暂无评分
+Rate(速度):       暂无评分
+
+================================================================================
+简介
+================================================================================
+
+在这个任务中，学生设计一项实验，利用快速植物（Fast Plants）测试其去除环境中铜和锌毒素的效果。
+
+该任务共分 3 个部分：
+1. 准备并参与一场关于电子废弃物（e-waste）的苏格拉底研讨会
+2. 利用快速植物及铜、锌毒素，设计并开展一项为期多周的实验
+3. 分析实验结果，并以实验报告的形式进行呈现与交流
+
+================================================================================
+Download Resource（下载资源）
+================================================================================
+
+1. Teacher Directions - Bioremediation
+   https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Science_711_Bioremediation_%28Teacher%29.docx
+
+2. Student Instructions - Bioremediation
+   https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Science_711_Bioremediation_%28Student%29.docx
+
+3. Item A - Socratic Seminar E-waste
+   https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Item%20A.%20Socratic%20Seminar%20E-waste.docx
+
+4. Item B - Socratic Graphic Organizer
+   https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Item%20B.%20Graphic%20Organizer%20-%20Socratic%20Seminar%20.docx
+
+5. Item C - Experiment Brainstorm
+   https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Item%20C.%20Background%20Info%20and%20Experiment%20Brainstorm.docx
+
+6. Item D - Research Q Hypothesis
+   https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Item%20D.%20Research%20Question%20Hypothesis.docx
+
+7. Item E - How to Write a Procedure
+   https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Item%20E.%20How%20to%20Write%20a%20Procedure.docx
+
+8. Item F - Lab Report Analysis
+   https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Item%20F.%20Lab%20Report%20Analysis.docx
+
+9. Item G - Lab Report Conclusion
+   https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Item%20G.%20Lab%20Report%20Conclusion.docx
+
+10. Item H - Lab Report Outline
+    https://performanceassessmentresourcebank.org/system/files/PARB%20CC%20BY%204.0%20Item%20H.%20Lab%20Report%20Outline.docx
+
+================================================================================
+Scoring Guides/Rubrics（评分指南）
+================================================================================
+
+1. Summit Public Schools Bioremediation Rubric
+   https://performanceassessmentresourcebank.org/sites/default/files/rubrics/Science_711_Bioremediation%20Rubric_0.pdf
+
+================================================================================
+Other Tasks With The Same Standards（相同标准的其他任务）
+================================================================================
+
+1. CCSS.ELA-LITERACY.RST.11-12.9
+   https://performanceassessmentresourcebank.org/standard/98
+
+2. CCSS.ELA-LITERACY.SL.9-10.1.A
+   https://performanceassessmentresourcebank.org/standard/120
+
+3. CCSS.ELA-LITERACY.WHST.11-12.1.A
+   https://performanceassessmentresourcebank.org/standard/143
+
+4. CCSS.ELA-LITERACY.WHST.11-12.1.E
+   https://performanceassessmentresourcebank.org/standard/149
+
+5. CCSS.ELA-LITERACY.WHST.11-12.5
+   https://performanceassessmentresourcebank.org/standard/164
+
+6. CCSS.ELA-LITERACY.WHST.11-12.7
+   https://performanceassessmentresourcebank.org/standard/167
+
+7. NGSS.HS-LS2-7
+   https://performanceassessmentresourcebank.org/standard/9771
