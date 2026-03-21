@@ -17,6 +17,8 @@ pool.getConnection()
 app.use('/api/domains',    require('./routes/domains'))
 app.use('/api/dimensions', require('./routes/dimensions'))
 app.use('/api/pbl',        require('./routes/pbl'))
+app.use('/api/references', require('./routes/references'))
+app.use('/api/pbl-open',   require('./routes/pbl_open'))
 
 app.get('/', (req, res) => res.json({ message: 'Summit API 运行中' }))
 

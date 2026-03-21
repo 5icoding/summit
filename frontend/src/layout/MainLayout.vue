@@ -81,6 +81,8 @@ const menuItems = [
   { to: '/framework',  icon: '◈', label: '核心素养框架', badge: '36' },
   { to: '/curriculum', icon: '◉', label: '参考课标',    badge: '' },
   { to: '/pbl',        icon: '◧', label: 'PBL 项目库',  badge: '36' },
+  { to: '/pbl-open',   icon: '◩', label: '公开PBL项目', badge: '36' },
+  { to: '/references', icon: '◎', label: '参考文献',    badge: '60' },
 ]
 </script>
 
